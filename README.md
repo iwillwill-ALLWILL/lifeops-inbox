@@ -2,6 +2,8 @@
 
 **Drop the paperwork. Get the next actions.**
 
+**Live demo:** [lifeops-inbox.vercel.app](https://lifeops-inbox.vercel.app)
+
 Paste a bill, itinerary, school/work notice, medical note, or event confirmation. LifeOps Inbox turns it into:
 
 - facts you can click back to the exact source words;
