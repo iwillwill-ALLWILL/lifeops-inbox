@@ -43,6 +43,19 @@ describe("analyzeDocument", () => {
     }
   });
 
+  it("ignores PDF page markers when deriving the document title", () => {
+    const source = [
+      "[Page 1]",
+      "EVERGREEN ENERGY — RENEWAL NOTICE",
+      "Amount due: $184.62",
+      "Status: OVERDUE",
+    ].join("\n");
+
+    const result = analyzeDocument(source, { referenceDate });
+
+    expect(result.title).toBe("EVERGREEN ENERGY — RENEWAL NOTICE");
+  });
+
   it.each(["PAID", "CANCELLED"])(
     "does not create an open Pay action for a %s bill",
     (status) => {

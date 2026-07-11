@@ -37,6 +37,13 @@ function linesWithOffsets(sourceText: string) {
   });
 }
 
+function deriveTitle(lines: Array<{ text: string }>) {
+  const title = lines
+    .map((line) => line.text.trim())
+    .find((line) => line && !/^\[\s*page\s+\d+(?:\s+of\s+\d+)?\s*\]$/i.test(line));
+  return title?.slice(0, 90) ?? "Document";
+}
+
 function classifyDocument(text: string): Analysis["documentKind"] {
   if (/flight|departs|arrives|hotel|booking reference/i.test(text)) return "travel";
   if (/amount due|invoice|billing|autopay|overdue/i.test(text)) return "bill";
@@ -407,7 +414,7 @@ export function analyzeDocument(sourceText: string, options: AnalyzeOptions = {}
   return AnalysisSchema.parse({
     version: "1.0",
     sourceText: text,
-    title: lines.find((line) => line.text.trim())?.text.trim().slice(0, 90) ?? "Document",
+    title: deriveTitle(lines),
     documentKind: classifyDocument(text),
     confidence,
     facts,
