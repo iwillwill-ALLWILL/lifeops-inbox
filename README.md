@@ -4,6 +4,8 @@
 
 **Live demo:** [lifeops-inbox.vercel.app](https://lifeops-inbox.vercel.app)
 
+**54-second walkthrough:** [lifeops-okxai-demo.mp4](assets/demo/lifeops-okxai-demo.mp4)
+
 Paste a bill, itinerary, school/work notice, medical note, or event confirmation. LifeOps Inbox turns it into:
 
 - facts you can click back to the exact source words;
@@ -42,3 +44,4 @@ npm run test:e2e
 - [API and future A2A contract](docs/API.md)
 - [Privacy and security model](docs/SECURITY.md)
 - [Hackathon positioning and submission copy](docs/COMPETITION.md)
+- [Final post, media and form field pack](docs/SUBMISSION.md)
