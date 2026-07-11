@@ -1,0 +1,42 @@
+{
+  "name": "lifeops-inbox",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=.playwright playwright test"
+  },
+  "dependencies": {
+    "chrono-node": "2.9.1",
+    "lucide-react": "0.544.0",
+    "motion": "12.42.2",
+    "next": "16.2.10",
+    "pdfjs-dist": "6.1.200",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "tesseract.js": "7.0.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.0",
+    "@types/node": "24.10.4",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.2",
+    "eslint": "9.39.2",
+    "eslint-config-next": "16.2.10",
+    "jsdom": "27.4.0",
+    "typescript": "5.9.3",
+    "vite-tsconfig-paths": "6.1.1",
+    "vitest": "4.1.10"
+  }
+}

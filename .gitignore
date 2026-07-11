@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# next
+/.next/
+/out/
+
+# tests
+/coverage/
+/playwright-report/
+/test-results/
+/.playwright/
+
+# local
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# typescript
+*.tsbuildinfo
