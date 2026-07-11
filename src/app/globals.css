@@ -203,6 +203,13 @@ svg { width: 1em; height: 1em; stroke-width: 1.8; }
 .ledger-count { display: grid; place-items: center; width: 27px; height: 27px; color: var(--ink) !important; background: var(--paper-deep); border-radius: 50%; font-size: 11px !important; }
 .source-text { height: 535px; margin: 0; padding: 28px 30px; overflow: auto; color: #38423e; background: #f8f6f0; white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.88; }
 .source-text mark { position: relative; margin: 0 -2px; padding: 2px; color: var(--ink); background: rgba(185,231,105,.72); box-shadow: 0 0 0 2px rgba(185,231,105,.28); border-radius: 2px; animation: highlight-in 300ms ease-out; }
+.pdf-page-shell { height: 535px; padding: 18px; overflow: auto; display: flex; align-items: flex-start; justify-content: center; background: #e8e5dc; }
+.pdf-page-surface { position: relative; flex: 0 0 auto; width: min(100%, 470px); margin: 0; overflow: hidden; background: white; border: 1px solid rgba(31,42,38,.16); box-shadow: 0 10px 28px rgba(31,42,38,.15); }
+.pdf-page-surface canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: white; }
+.pdf-page-loading { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; color: var(--ink-faint); background: rgba(248,246,240,.88); font-size: 10px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.pdf-evidence-highlight { position: absolute; z-index: 2; pointer-events: none; background: rgba(185,231,105,.42); border: 2px solid rgba(82,119,25,.9); box-shadow: 0 0 0 2px rgba(185,231,105,.2); border-radius: 2px; animation: highlight-in 300ms ease-out; }
+.pdf-evidence-overlay { position: absolute; z-index: 3; pointer-events: none; }
+.pdf-page-surface[data-render-state="loading"] .pdf-evidence-highlight { opacity: 0; }
 .source-note { min-height: 52px; margin: 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; color: var(--ink-faint); border-top: 1px solid var(--line); font-size: 10px; }
 .source-note svg { color: var(--signal-dark); font-size: 15px; }
 .fact-list { height: 587px; overflow: auto; }
@@ -285,7 +292,7 @@ footer > span { justify-self: end; }
   .intake__grid { grid-template-columns: 1.35fr .65fr; }
   .proof-grid { grid-template-columns: 1fr; }
   .source-pane { border-right: 0; border-bottom: 1px solid var(--line-dark); }
-  .source-text { height: 400px; }
+  .source-text, .pdf-page-shell { height: 400px; }
   .fact-list { height: auto; max-height: 520px; }
   .judge-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -319,7 +326,9 @@ footer > span { justify-self: end; }
   .export-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .export-actions button { justify-content: center; }
   .proof-grid { margin-top: 22px; }
-  .source-text { height: 360px; padding: 22px 18px; }
+  .source-text, .pdf-page-shell { height: 360px; }
+  .source-text { padding: 22px 18px; }
+  .pdf-page-shell { padding: 12px; }
   .fact-row { padding-inline: 13px; gap: 10px; }
   .fact-score { display: none; }
   .section-heading-row { align-items: flex-start; flex-direction: column; gap: 14px; }

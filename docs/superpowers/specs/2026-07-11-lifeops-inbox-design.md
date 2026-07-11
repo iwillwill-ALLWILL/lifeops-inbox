@@ -8,7 +8,7 @@ LifeOps Inbox is a local-first operations workbench for people whose important n
 
 The first viewport pairs a concise promise with a working intake surface. A user can paste text, select one of three clearly labeled realistic samples, or choose a text, PDF, or image file. Analysis happens locally in the browser. The result view becomes an operations desk:
 
-- Source pane: the exact text, with a selected fact’s source span highlighted and scrolled into view.
+- Source pane: a safely located PDF fact appears on its original page; all other inputs and unsupported PDF geometry use the exact text with the selected source span highlighted and scrolled into view.
 - Brief header: document kind, calibrated confidence, privacy statement, and export controls.
 - Fact ledger: normalized values beside verbatim evidence quotes; selecting a row drives the proof trail.
 - Action board: Now, This Week, and Waiting lanes derived only from extracted facts.
@@ -21,7 +21,7 @@ The visual identity is a calm operations desk: chalk and warm paper neutrals, in
 
 `src/core` is a deterministic, environment-agnostic TypeScript library. It owns the Zod schema, line-aware parsing, evidence offsets, normalization, conflicts, action derivation, redaction, and ICS serialization. `analyzeDocument(text, options)` is the single entry used by both the client and `/api/analyze`.
 
-The client imports the same core directly. Text never needs to cross the network. PDF extraction dynamically imports `pdfjs-dist` and reads text content in the browser. Image OCR dynamically imports `tesseract.js`; initialization or recognition failures return an actionable message asking the user to paste text instead. Upload bytes are held only for the active extraction operation and are never persisted.
+The client imports the same core directly. Text never needs to cross the network. PDF extraction dynamically imports `pdfjs-dist` and emits canonical text plus a browser-local geometry sidecar without changing the analysis contract. The original PDF `File` is retained only for the active local result so a safely located page can be rendered, then released when the input is edited or replaced; it is never persisted. Image OCR dynamically imports `tesseract.js`; initialization or recognition failures return an actionable message asking the user to paste text instead, and OCR geometry overlays are deferred.
 
 App Router route handlers expose `GET /api/health` and opt-in `POST /api/analyze` for future A2A use. The analyze route accepts JSON text only, validates size and shape, and never accepts file bytes.
 
@@ -47,7 +47,7 @@ Samples are visibly labeled “Built-in sample.” Their parsed outputs are prod
 
 ## Failure and recovery
 
-Empty or content-free inputs remain in the intake state with a specific message. Unsupported files explain accepted types. PDF extraction errors suggest copying the selectable PDF text. OCR reports initialization/progress and on failure recommends pasting the text; it never returns fabricated content. Invalid API input returns a structured 400 response. A partial analysis with no dates still presents facts and uncertainties, while calendar export is disabled with an explanation.
+Empty or content-free inputs remain in the intake state with a specific message. Unsupported files explain accepted types. PDF extraction errors suggest copying the selectable PDF text. Whole PDF geometry runs must exactly, completely, and unambiguously cover the evidence on one unrotated page; partial text-item geometry is never estimated and instead uses the existing text-only proof. OCR reports initialization/progress and on failure recommends pasting the text; it never returns fabricated content. Invalid API input returns a structured 400 response. A partial analysis with no dates still presents facts and uncertainties, while calendar export is disabled with an explanation.
 
 ## Verification strategy
 

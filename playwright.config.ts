@@ -8,6 +8,9 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:3000",
     trace: "retain-on-failure",
+    launchOptions: process.env.PLAYWRIGHT_SINGLE_PROCESS === "1"
+      ? { args: ["--single-process"] }
+      : undefined,
   },
   projects: [
     { name: "desktop-chromium", use: { ...devices["Desktop Chrome"] } },

@@ -3,7 +3,7 @@
 ## Guarantees in this MVP
 
 - The main workspace imports the parser directly and makes no analysis request.
-- Uploads are held as browser `File` objects only for extraction and are never persisted by the app.
+- Uploads are held as browser `File` objects only for extraction; the active PDF result retains its local `File` for original-page preview until the document is edited or replaced. Uploads are never persisted by the app.
 - PDF and image bytes are not accepted by `/api/analyze`.
 - Every fact must validate against an exact source substring.
 - Share output is produced from a separate projection that omits source text, evidence quotes, and source-derived titles.
@@ -32,6 +32,7 @@ The deterministic parser does not execute prompts or call an LLM. Strings such a
 
 - Empty or whitespace-only text: the UI stops with an actionable prompt and the API returns a structured 400 response.
 - PDF without selectable text: user is told to use an image or paste text.
+- PDF geometry that is malformed, rotated, cross-page, ambiguous, partial-run, or incomplete: the original-page overlay is withheld and the exact extracted-text proof remains available. The app does not infer sub-item glyph positions.
 - OCR initialization/recognition failure: no result is fabricated; the UI suggests a clearer image or pasted text.
 - Ambiguous dates: the parser preserves the candidate while flagging ambiguity, missing year, or timezone.
 - Contradictions: both cited values remain visible and the earlier deadline is recommended until verified.

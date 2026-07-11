@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowDown,
@@ -32,7 +32,13 @@ import { toShareSummary } from "@/core/redact";
 import { DEMO_SAMPLES } from "@/core/samples";
 import type { Analysis, Fact } from "@/core/schema";
 import { extractDocument } from "@/lib/extract-document";
+import {
+  locatePdfEvidence,
+  type PdfDocumentSource,
+  type PdfSourceMap,
+} from "@/lib/pdf-source-locator";
 import { confidenceMeta, createShareCardSvg, formatDueAt, formatFactValue, segmentSource } from "@/lib/presentation";
+import { PdfEvidencePreview } from "./pdf-evidence-preview";
 
 const SAMPLE_REFERENCE_DATE = new Date("2026-07-11T12:00:00Z");
 
@@ -172,14 +178,74 @@ function IntakePanel({
   );
 }
 
-function ResultWorkbench({ analysis }: { analysis: Analysis }) {
+function TextSourceProof({
+  segments,
+  onEvidenceElement,
+}: {
+  segments: ReturnType<typeof segmentSource>;
+  onEvidenceElement: (element: HTMLElement | null) => void;
+}) {
+  return (
+    <>
+      <div className="pane-heading">
+        <div><span>Source</span><h3 id="source-heading">Original text</h3></div>
+        <div className="proof-badge"><Highlighter aria-hidden="true" /> Proof trail</div>
+      </div>
+      <pre className="source-text">
+        {segments.map((segment, index) =>
+          segment.highlighted ? (
+            <mark ref={onEvidenceElement} key={index} data-testid="selected-evidence">{segment.text}</mark>
+          ) : (
+            <span key={index}>{segment.text}</span>
+          ),
+        )}
+      </pre>
+      <p className="source-note"><ShieldCheck aria-hidden="true" /> Select a fact to verify its exact source words.</p>
+    </>
+  );
+}
+
+function ResultWorkbench({
+  analysis,
+  pdfSource,
+}: {
+  analysis: Analysis;
+  pdfSource?: PdfDocumentSource;
+}) {
   const [selectedFactId, setSelectedFactId] = useState(analysis.facts[0]?.id);
+  const [failedPreview, setFailedPreview] = useState<{
+    sourceMap: PdfSourceMap;
+    locatorKey: string;
+  } | null>(null);
+  if (failedPreview && failedPreview.sourceMap !== pdfSource?.map) {
+    setFailedPreview(null);
+  }
   const evidenceRef = useRef<HTMLElement>(null);
   const selectedFact = analysis.facts.find((fact) => fact.id === selectedFactId);
   const segments = useMemo(
     () => segmentSource(analysis.sourceText, selectedFact?.evidence),
     [analysis.sourceText, selectedFact],
   );
+  const locator = pdfSource && selectedFact
+    ? locatePdfEvidence(pdfSource.map, selectedFact.evidence)
+    : null;
+  const locatorKey = locator
+    ? `${locator.pageNumber}:${locator.evidenceStart}`
+    : "";
+  const failedForCurrentSource = Boolean(
+    failedPreview
+    && failedPreview.sourceMap === pdfSource?.map
+    && failedPreview.locatorKey === locatorKey,
+  );
+  const showPdfPreview = Boolean(locator && pdfSource && !failedForCurrentSource);
+  const onEvidenceElement = useCallback((element: HTMLElement | null) => {
+    evidenceRef.current = element;
+  }, []);
+  const onPdfUnavailable = useCallback(() => {
+    if (locatorKey && pdfSource) {
+      setFailedPreview({ sourceMap: pdfSource.map, locatorKey });
+    }
+  }, [locatorKey, pdfSource]);
   useEffect(() => {
     if (!selectedFactId) return;
     const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -187,7 +253,7 @@ function ResultWorkbench({ analysis }: { analysis: Analysis }) {
       behavior: reducedMotion ? "auto" : "smooth",
       block: "center",
     });
-  }, [selectedFactId]);
+  }, [failedPreview, locatorKey, pdfSource, selectedFactId]);
   const confidence = confidenceMeta(analysis.confidence);
   const exceptionCount = analysis.conflicts.length + analysis.uncertainties.length;
   const lanes = [
@@ -236,20 +302,27 @@ function ResultWorkbench({ analysis }: { analysis: Analysis }) {
 
       <div className="proof-grid">
         <section className="source-pane" aria-labelledby="source-heading">
-          <div className="pane-heading">
-            <div><span>Source</span><h3 id="source-heading">Original text</h3></div>
-            <div className="proof-badge"><Highlighter aria-hidden="true" /> Proof trail</div>
-          </div>
-          <pre className="source-text">
-            {segments.map((segment, index) =>
-              segment.highlighted ? (
-                <mark ref={evidenceRef} key={index} data-testid="selected-evidence">{segment.text}</mark>
-              ) : (
-                <span key={index}>{segment.text}</span>
-              ),
-            )}
-          </pre>
-          <p className="source-note"><ShieldCheck aria-hidden="true" /> Select a fact to verify its exact source words.</p>
+          {showPdfPreview && locator && pdfSource ? (
+            <>
+              <div className="pane-heading">
+                <div><span>Source</span><h3 id="source-heading">Original PDF · Page {locator.pageNumber}</h3></div>
+                <div className="proof-badge"><Highlighter aria-hidden="true" /> Proof trail</div>
+              </div>
+              <PdfEvidencePreview
+                source={pdfSource}
+                locator={locator}
+                quote={selectedFact?.evidence.quote ?? ""}
+                onUnavailable={onPdfUnavailable}
+                onEvidenceElement={onEvidenceElement}
+              />
+              <p className="source-note"><ShieldCheck aria-hidden="true" /> Located on the original page from complete PDF text geometry.</p>
+            </>
+          ) : (
+            <TextSourceProof
+              segments={segments}
+              onEvidenceElement={onEvidenceElement}
+            />
+          )}
         </section>
 
         <section className="fact-pane" aria-labelledby="facts-heading">
@@ -345,15 +418,31 @@ function ResultWorkbench({ analysis }: { analysis: Analysis }) {
 export function LifeOpsApp() {
   const [text, setText] = useState("");
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
+  const [pdfSource, setPdfSource] = useState<PdfDocumentSource>();
   const [error, setError] = useState("");
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState(0);
+  const extractionRequestRef = useRef(0);
+
+  const invalidateExtraction = () => {
+    extractionRequestRef.current += 1;
+    setBusy(false);
+    setProgress(0);
+    setError("");
+    setStatus("");
+    setPdfSource(undefined);
+  };
+
+  useEffect(() => () => {
+    extractionRequestRef.current += 1;
+  }, []);
 
   const runAnalysis = (
     value = text,
     nextStatus = "Execution brief ready",
     referenceDate = new Date(),
+    nextPdfSource: PdfDocumentSource | null | undefined = undefined,
   ) => {
     if (!value.trim()) {
       setError("Paste a notice or choose a sample to get started.");
@@ -362,7 +451,13 @@ export function LifeOpsApp() {
     }
     try {
       const result = analyzeDocument(value, { referenceDate });
+      const retainedPdfSource = nextPdfSource === undefined
+        ? pdfSource?.map.sourceText === value
+          ? pdfSource
+          : undefined
+        : nextPdfSource ?? undefined;
       setAnalysis(result);
+      setPdfSource(retainedPdfSource);
       setError("");
       setStatus(nextStatus);
       requestAnimationFrame(() => {
@@ -371,33 +466,50 @@ export function LifeOpsApp() {
     } catch {
       setError("We could not find usable text. Check the document and try again.");
       setAnalysis(null);
+      setPdfSource(undefined);
     }
   };
 
   const handleSample = (sample: (typeof DEMO_SAMPLES)[number]) => {
+    invalidateExtraction();
     setText(sample.text);
     runAnalysis(
       sample.text,
       "Built-in sample loaded · parsed by the real analysis core",
       SAMPLE_REFERENCE_DATE,
+      null,
     );
   };
 
   const handleFile = async (file: File) => {
+    const requestId = extractionRequestRef.current + 1;
+    extractionRequestRef.current = requestId;
     setBusy(true);
     setProgress(0);
     setError("");
     setStatus(`Reading ${file.name} locally…`);
+    setPdfSource(undefined);
     try {
-      const result = await extractDocument(file, undefined, (value) => setProgress(value));
+      const result = await extractDocument(file, undefined, (value) => {
+        if (extractionRequestRef.current === requestId) setProgress(value);
+      });
+      if (extractionRequestRef.current !== requestId) return;
       setText(result.text);
-      runAnalysis(result.text, `${file.name} read locally · ${result.method.toUpperCase()} extraction complete`);
+      runAnalysis(
+        result.text,
+        `${file.name} read locally · ${result.method.toUpperCase()} extraction complete`,
+        new Date(),
+        result.method === "pdf" ? result.source ?? null : null,
+      );
     } catch (cause) {
+      if (extractionRequestRef.current !== requestId) return;
       setError(cause instanceof Error ? cause.message : "This file could not be read.");
       setStatus("");
     } finally {
-      setBusy(false);
-      setProgress(0);
+      if (extractionRequestRef.current === requestId) {
+        setBusy(false);
+        setProgress(0);
+      }
     }
   };
 
@@ -430,7 +542,10 @@ export function LifeOpsApp() {
       <div className="workspace-shell" id="workspace">
         <IntakePanel
           text={text}
-          setText={setText}
+          setText={(value) => {
+            invalidateExtraction();
+            setText(value);
+          }}
           onAnalyze={() => runAnalysis()}
           onSample={handleSample}
           onFile={handleFile}
@@ -440,7 +555,13 @@ export function LifeOpsApp() {
           progress={progress}
         />
         <AnimatePresence mode="wait">
-          {analysis ? <ResultWorkbench key={`${analysis.title}-${analysis.sourceText.length}`} analysis={analysis} /> : null}
+          {analysis ? (
+            <ResultWorkbench
+              key={`${analysis.title}-${analysis.sourceText.length}`}
+              analysis={analysis}
+              pdfSource={pdfSource?.map.sourceText === analysis.sourceText ? pdfSource : undefined}
+            />
+          ) : null}
         </AnimatePresence>
       </div>
 
