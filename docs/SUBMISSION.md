@@ -44,11 +44,10 @@ A 54-second walkthrough of LifeOps Inbox. It starts with the live product, loads
 
 ## Demo media
 
-- **Final video:** `assets/demo/lifeops-okxai-demo.mp4`
-- **Duration:** 54.08 seconds
-- **Video:** H.264 High, 1440×900, 25 fps, YUV 4:2:0
-- **Audio:** AAC-LC, mono
-- **Size:** about 2.83 MB
+The first automated walkthrough was rejected during internal review and removed from the public repository. Do not publish or submit it. A new 16:9 director's cut must pass visual review before this section is restored.
+
+Approved stills retained for redesign reference:
+
 - **Hero:** `assets/demo/01-hero.png`
 - **Proof trail:** `assets/demo/02-proof-trail.png`
 - **Conflict close-up:** `assets/demo/03-conflict-radar-closeup.png`

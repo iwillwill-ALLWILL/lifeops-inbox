@@ -4,7 +4,7 @@
 
 **Live demo:** [lifeops-inbox.vercel.app](https://lifeops-inbox.vercel.app)
 
-**54-second walkthrough:** [lifeops-okxai-demo.mp4](assets/demo/lifeops-okxai-demo.mp4)
+**Demo video:** in production; no public cut has been approved yet.
 
 Paste a bill, itinerary, school/work notice, medical note, or event confirmation. LifeOps Inbox turns it into:
 
