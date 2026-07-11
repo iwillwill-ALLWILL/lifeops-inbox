@@ -34,27 +34,35 @@ The category wedge is life administration: overdue bills, travel logistics, scho
 | 70–80s | Download calendar and safe share card | “Actions become a real calendar; public sharing excludes names, references, source text, and identifiers.” |
 | 80–90s | Judge-facing four principles | “Provenance, conflict detection, privacy, and executable output: that is why this is a lifestyle companion, not generic OCR.” |
 
-## ASP draft
+## ASP registration
 
-No ASP or Agent Identity has been created. The following is submission-ready copy only.
+**Registration status:** Agent Identity created; marketplace activation submitted and currently under review (`approvalStatus: 2`).
+
+**Agent ID:** `5018`
 
 **ASP name:** LifeOps Inbox
 
-**Short description:** Turns bills, bookings, notices, and confirmations into cited facts, visible uncertainties, and calendar-ready next actions.
+**Identity description:** Turns bills, bookings, notices, and confirmations into cited facts, visible uncertainties, and calendar-ready next actions.
 
 **Service name:** `Life Admin Action Plan`
 
 **Service description:**
 
-Turns bills, bookings, notices, and confirmations into cited facts, conflicts, and calendar-ready next actions.
+Turns bills, bookings, notices, and confirmations into cited facts, visible uncertainties, and calendar-ready next actions.
 
-Provide the document text and, optionally, a reference timestamp.
+Provide the bill, booking, notice, confirmation, or extracted text you want analyzed.
 
 **Service type:** Agent to agent
 
-**Category:** Lifestyle / Personal Operations
+**Category:** Lifestyle
 
-**Fee recommendation:** 0.02 USDT per successful analysis. Do not charge for validation failures or empty analyses.
+**Fee:** 0.02 USDT
+
+**Preferred language:** `en-US`
+
+**Live demo:** https://lifeops-inbox.vercel.app
+
+**Repository:** https://github.com/iwillwill-ALLWILL/lifeops-inbox
 
 ## Final submission field drafts
 
@@ -92,7 +100,7 @@ Next.js App Router and TypeScript; Zod-validated deterministic core; chrono-node
 
 **OKX.AI / agent ecosystem fit**
 
-The deterministic analyzer is packaged behind a strict, versioned text contract that can become an ASP service. An agent can request analysis, preserve citations and uncertainties, then coordinate downstream calendar or task agents with user approval. This submission does not claim an already-registered Agent Identity.
+The deterministic analyzer is exposed through a strict, versioned text contract and registered as ASP Agent Identity `#5018`. Its agent-to-agent service preserves citations and uncertainties so downstream calendar or task agents can act only after user review. Marketplace activation has been submitted and is currently under review.
 
 **Privacy statement**
 
@@ -104,9 +112,13 @@ Vitest covers schema, parser, adversarial cases, redaction, calendar export, con
 
 ## Submission checklist
 
-- Record the 90-second demo using all three samples, but center the bill and conflict notice.
-- Capture desktop proof-trail and mobile action-board screenshots.
-- Host the app and verify `/api/health` publicly.
-- Add final repository and demo URLs to the field drafts.
-- Review the safe share card before posting it.
-- Only after explicit approval: create/register the Agent Identity or ASP entry using the copy above.
+- [x] Build and publicly deploy the working app.
+- [x] Verify `/api/health`, TXT upload, PDF extraction, and image OCR in production.
+- [x] Publish the public repository and marketplace avatar.
+- [x] Register ASP Agent Identity `#5018` and submit marketplace activation for review.
+- [ ] Wait for marketplace approval; do not poll aggressively.
+- [ ] Record the 90-second demo using all three samples, centered on the bill and conflict notice.
+- [ ] Capture desktop proof-trail and mobile action-board screenshots.
+- [ ] Review the safe share card and final participation copy before posting.
+- [ ] Publish the required `#OKXAI` participation post after X access is restored.
+- [ ] Submit the final form after the marketplace listing and participation-post URL are available.
