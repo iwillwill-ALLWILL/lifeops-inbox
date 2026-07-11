@@ -15,28 +15,28 @@ The category wedge is life administration: overdue bills, travel logistics, scho
 ## Why judges should care
 
 - Immediate demo: choose any built-in sample and useful output appears through the real parser.
-- Trust is interactive: selecting a fact highlights its exact source quote.
+- Trust is interactive: selecting a safely located PDF fact opens the original page and marks the evidence; unsupported geometry falls back to the exact source quote.
 - The product admits uncertainty and preserves conflicting evidence.
 - The main path is local-first and works without keys or accounts.
 - Output leaves the app: `.ics` calendar and safe SVG share card.
 - The same versioned core already has a text-only API boundary for future A2A packaging.
 
-## 90-second demo storyboard
+## Planned 50.4-second demo storyboard
 
-| Time | Screen / action | Talk track |
+Before publication, verify the preview-gated candidate against every row below. Treat these rows as the intended edit, not as proof of unpublished video contents.
+
+| Time | Screen / action | Judge takeaway |
 | --- | --- | --- |
-| 0–08s | Hero, then scroll to intake | “Life admin does not arrive as tasks. It arrives as paperwork.” |
-| 08–20s | Choose **Overdue renewal bill** | “No key, no account. This built-in sample goes through the same parser as your text or PDF.” |
-| 20–36s | Show confidence, amount, overdue state, renewal | “LifeOps extracts only cited facts and normalizes what is explicit.” |
-| 36–48s | Click **Amount due**; source highlights `$184.62` | “Every fact has a proof trail. One click takes you to the exact words.” |
-| 48–60s | Show Now / This Week lanes | “The result is not a summary. It is an execution board: pay now, review renewal this week.” |
-| 60–70s | Choose **Genesis hackathon deadlines** | “Contradictions are not averaged away. The portal closes a day before the stated deadline, so LifeOps flags it.” |
-| 70–80s | Download calendar and safe share card | “Actions become a real calendar; public sharing excludes names, references, source text, and identifiers.” |
-| 80–90s | Judge-facing four principles | “Provenance, conflict detection, privacy, and executable output: that is why this is a lifestyle companion, not generic OCR.” |
+| 0–07s | Hero and synthetic PDF fixture intake | Life admin arrives as paperwork, and the file stays in the browser. |
+| 07–18s | Parse overdue renewal bill; click **Amount due** | The original PDF page opens and `$42.00` is marked as evidence. |
+| 18–27s | Show Now / This Week / Waiting | The output is an execution board, not another summary. |
+| 27–39s | Load **Genesis hackathon deadlines** | Contradictory deadlines stay visible; the safer earlier action remains on the board. |
+| 39–46s | Download calendar and safe share card | Output leaves the app in useful, reviewable forms. |
+| 46–50.4s | Brand close and `ASP #5018` | Local-first, evidence-backed lifestyle execution in the OKX.AI ecosystem. |
 
 ## ASP registration
 
-**Registration status:** Agent Identity created; marketplace activation submitted and currently under review (`approvalStatus: 2`).
+**Registration status:** Agent Identity created; marketplace listing is under review. Do not modify the listing while review is pending.
 
 **Agent ID:** `5018`
 
@@ -100,7 +100,7 @@ Next.js App Router and TypeScript; Zod-validated deterministic core; chrono-node
 
 **OKX.AI / agent ecosystem fit**
 
-The deterministic analyzer is exposed through a strict, versioned text contract and registered as ASP Agent Identity `#5018`. Its agent-to-agent service preserves citations and uncertainties so downstream calendar or task agents can act only after user review. Marketplace activation has been submitted and is currently under review.
+The deterministic analyzer is exposed through a strict, versioned text contract and registered as ASP Agent Identity `#5018`. Its agent-to-agent service preserves citations and uncertainties so downstream calendar or task agents can act only after user review. Marketplace listing is under review; the registered service is priced at 0.02 USDT.
 
 **Privacy statement**
 
@@ -113,12 +113,12 @@ Vitest covers schema, parser, adversarial cases, redaction, calendar export, con
 ## Submission checklist
 
 - [x] Build and publicly deploy the working app.
-- [x] Verify `/api/health`, TXT upload, PDF extraction, and image OCR in production.
+- [x] Verify `/api/health`, TXT upload, PDF extraction, image OCR, and dedicated original-PDF location in production.
 - [x] Publish the public repository and marketplace avatar.
 - [x] Register ASP Agent Identity `#5018` and submit marketplace activation for review.
 - [ ] Wait for marketplace approval; do not poll aggressively.
-- [ ] Record the 90-second demo using all three samples, centered on the bill and conflict notice.
-- [ ] Capture desktop proof-trail and mobile action-board screenshots.
+- [ ] Publish the final preview-approved 50.4-second video and retain public verification metadata.
+- [x] Capture desktop and mobile original-PDF proof screenshots.
 - [ ] Review the safe share card and final participation copy before posting.
-- [ ] Publish the required `#OKXAI` participation post after X access is restored.
+- [ ] Publish the required `#OKXAI` participation post after final preview approval.
 - [ ] Submit the final form after the marketplace listing and participation-post URL are available.

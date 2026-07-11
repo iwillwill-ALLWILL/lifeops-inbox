@@ -4,11 +4,11 @@
 
 **Live demo:** [lifeops-inbox.vercel.app](https://lifeops-inbox.vercel.app)
 
-**Demo video:** in production; no public cut has been approved yet.
+**Demo video:** the final 50.4-second candidate is preview-gated and not public yet.
 
 Paste a bill, itinerary, school/work notice, medical note, or event confirmation. LifeOps Inbox turns it into:
 
-- facts you can click back to the exact source words;
+- facts you can click back to the original PDF page when reliable geometry is available, with exact-text proof as the fallback;
 - normalized dates, timezones, amounts, locations, and references;
 - a Now / This Week / Waiting action board;
 - visible conflicts and missing details;
@@ -43,5 +43,6 @@ npm run test:e2e
 - [How it works](docs/ARCHITECTURE.md)
 - [API and future A2A contract](docs/API.md)
 - [Privacy and security model](docs/SECURITY.md)
+- [Production validation and interoperability evidence](docs/VALIDATION.md)
 - [Hackathon positioning and submission copy](docs/COMPETITION.md)
 - [Final post, media and form field pack](docs/SUBMISSION.md)

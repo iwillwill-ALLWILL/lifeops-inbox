@@ -43,4 +43,4 @@ Text parsing and PDF extraction require no external service. Tesseract OCR is op
 
 ## Out of scope
 
-This MVP does not provide authentication, encrypted vault storage, medical/legal advice, payment execution, email/calendar account access, multi-user sharing, or a registered OKX Agent Identity. The calendar download contains cited source phrases and should be treated as private unless the user reviews it.
+This MVP does not provide authentication, encrypted vault storage, medical/legal advice, payment execution, email/calendar account access, or multi-user document sharing. OKX Agent Identity `#5018` registers the separate Life Admin Action Plan service; it does not cause the browser workspace to upload documents. Calendar downloads contain cited source phrases and should be treated as private unless the user reviews them.
