@@ -21,18 +21,19 @@ The category wedge is life administration: overdue bills, travel logistics, scho
 - Output leaves the app: `.ics` calendar and safe SVG share card.
 - The same versioned core already has a text-only API boundary for future A2A packaging.
 
-## Planned 50.4-second demo storyboard
+## Final 58.1-second demo storyboard
 
-Before publication, verify the preview-gated candidate against every row below. Treat these rows as the intended edit, not as proof of unpublished video contents.
+The local final was user-approved and remains unpublished. Verify the local source against its recorded checksum before upload, then verify public playback separately after the platform transcodes it. Detailed render and visual-review evidence stays with the local media handoff rather than this repository.
 
 | Time | Screen / action | Judge takeaway |
 | --- | --- | --- |
-| 0–07s | Hero and synthetic PDF fixture intake | Life admin arrives as paperwork, and the file stays in the browser. |
-| 07–18s | Parse overdue renewal bill; click **Amount due** | The original PDF page opens and `$42.00` is marked as evidence. |
-| 18–27s | Show Now / This Week / Waiting | The output is an execution board, not another summary. |
-| 27–39s | Load **Genesis hackathon deadlines** | Contradictory deadlines stay visible; the safer earlier action remains on the board. |
-| 39–46s | Download calendar and safe share card | Output leaves the app in useful, reviewable forms. |
-| 46–50.4s | Brand close and `ASP #5018` | Local-first, evidence-backed lifestyle execution in the OKX.AI ecosystem. |
+| 0–05s | Branded hero | Life admin arrives as paperwork; LifeOps returns next actions. |
+| 05–14s | Guided synthetic PDF intake | One PDF is processed locally without an account or API key. |
+| 14–24s | Select **Amount due**; follow the numbered arrow to original PDF page 2 | The selected fact remains attached to the exact `$42.00` box on the source page. |
+| 24–32s | Show Now / This Week / Waiting | Cited dates become an execution board, not another summary. |
+| 32–44s | Load **Genesis hackathon deadlines** and reveal the conflict | `Jul 17 ≠ Jul 18`; both claims stay visible and the safer earlier date drives action. |
+| 44–52s | Download calendar and safe share card | Output leaves the app in useful, reviewable forms. |
+| 52–58.1s | Brand close and `ASP #5018` | Local-first, evidence-backed lifestyle execution in the OKX.AI ecosystem. |
 
 ## ASP registration
 
@@ -117,8 +118,9 @@ Vitest covers schema, parser, adversarial cases, redaction, calendar export, con
 - [x] Publish the public repository and marketplace avatar.
 - [x] Register ASP Agent Identity `#5018` and submit marketplace activation for review.
 - [ ] Wait for marketplace approval; do not poll aggressively.
-- [ ] Publish the final preview-approved 50.4-second video and retain public verification metadata.
+- [x] Produce and user-approve the final 58.1-second Remotion-guided video.
+- [ ] Publish the approved video and retain the public URL plus local-source checksum metadata.
 - [x] Capture desktop and mobile original-PDF proof screenshots.
 - [ ] Review the safe share card and final participation copy before posting.
-- [ ] Publish the required `#OKXAI` participation post after final preview approval.
+- [ ] Publish the required `#OKXAI` participation post after final participation-copy review.
 - [ ] Submit the final form after the marketplace listing and participation-post URL are available.

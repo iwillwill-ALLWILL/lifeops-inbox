@@ -38,15 +38,15 @@ ASP #5018
 #OKXAI
 ```
 
-### Planned video alt text
+### Final video alt text
 
-Use only after the public asset has been checked against the final storyboard:
+Before uploading, verify the approved local file against the recorded checksum. After publication, verify public playback and the attached alt text; X may transcode the uploaded file.
 
-> A 50.4-second walkthrough of LifeOps Inbox. It uploads a synthetic two-page overdue-bill PDF fixture, opens the original page and marks the exact amount due, turns cited facts into a prioritised action board, preserves conflicting hackathon deadlines, and exports a calendar and privacy-safe share card.
+> A 58-second guided walkthrough of LifeOps Inbox. It processes a synthetic two-page overdue-bill PDF locally, connects a selected fact to the exact `$42.00` box on original PDF page 2, turns cited dates into a Now / This Week / Waiting board, keeps conflicting hackathon deadlines visible, and exports a calendar and privacy-safe share card.
 
 ## Demo media
 
-A local 50.4-second 16:9 candidate exists and remains preview-gated. Do not publish it from the repository. After final approval, verify the published asset against the storyboard, retain its checksum and duration metadata, and only then use the planned alt text above.
+The user-approved local final is a 58.1-second composition (58.15-second MP4 container), 1600×900, 30 fps Remotion-guided walkthrough. It remains outside the repository and has not yet been posted to X or submitted through the competition form. Before upload, confirm that the local source file matches SHA-256 `8d2577246ca1146af3b22249f14295f785e0f2217ddea586823324e8a6c6e403`. After publication, verify the public video's playback and alt text rather than expecting the transcoded asset to retain the local hash.
 
 Approved stills:
 
@@ -63,7 +63,7 @@ Approved stills:
 | Field | Value |
 | --- | --- |
 | X Account Handle | `@iwillwill_` |
-| X Participation Post | **Pending: publish after final preview approval** |
+| X Participation Post | **Pending: final post review and publication** |
 | ASP Name | `LifeOps Inbox` |
 | Agent ID | `5018` |
 | ASP Description | Use the ASP description above |
@@ -72,6 +72,6 @@ Approved stills:
 ## Remaining gates
 
 1. Marketplace review must approve Agent `#5018`.
-2. Publish the preview-approved participation post and video through the signed-in X browser; API credentials are not required.
+2. Review the final participation-post preview, then publish it with the approved video through the signed-in X browser; API credentials are not required.
 3. The user's Telegram handle must be supplied or verified from the live account.
 4. The final form must be checked and submitted only after the public X post URL exists.
