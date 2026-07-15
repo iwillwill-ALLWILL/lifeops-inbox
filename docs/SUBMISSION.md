@@ -67,10 +67,9 @@ Approved stills:
 | ASP Name | `LifeOps Inbox` |
 | Agent ID | `5018` |
 | ASP Description | Use the ASP description above |
-| Telegram Handle | **Required before final submission; do not guess** |
+| Telegram Handle | `@iwillwill` |
 
 ## Remaining gates
 
 1. Marketplace review must approve Agent `#5018`.
-2. The user's Telegram handle must be supplied or verified from the live account.
-3. The final form must be checked and submitted after marketplace approval; the public X post URL is ready.
+2. The final form must be checked and submitted after marketplace approval; the public X post URL and verified Telegram handle are ready.
