@@ -23,7 +23,7 @@ The category wedge is life administration: overdue bills, travel logistics, scho
 
 ## Final 58.1-second demo storyboard
 
-The local final was user-approved and remains unpublished. Verify the local source against its recorded checksum before upload, then verify public playback separately after the platform transcodes it. Detailed render and visual-review evidence stays with the local media handoff rather than this repository.
+The user-approved final is published at https://x.com/iwillwill_/status/2077283553789014446. The public post and media attachment were verified from a logged-out browser after X transcoding. Detailed render and visual-review evidence stays with the local media handoff rather than this repository.
 
 | Time | Screen / action | Judge takeaway |
 | --- | --- | --- |
@@ -119,8 +119,8 @@ Vitest covers schema, parser, adversarial cases, redaction, calendar export, con
 - [x] Register ASP Agent Identity `#5018` and submit marketplace activation for review.
 - [ ] Wait for marketplace approval; do not poll aggressively.
 - [x] Produce and user-approve the final 58.1-second Remotion-guided video.
-- [ ] Publish the approved video and retain the public URL plus local-source checksum metadata.
+- [x] Publish the approved video and retain the public URL plus local-source checksum metadata.
 - [x] Capture desktop and mobile original-PDF proof screenshots.
-- [ ] Review the safe share card and final participation copy before posting.
-- [ ] Publish the required `#OKXAI` participation post after final participation-copy review.
+- [x] Review the safe share card and final participation copy before posting.
+- [x] Publish the required `#OKXAI` participation post after final participation-copy review.
 - [ ] Submit the final form after the marketplace listing and participation-post URL are available.
