@@ -60,6 +60,9 @@ Approved stills:
 
 ## Final form fields
 
+Current official form: https://forms.gle/mddEUagmDbyV37ws8
+Official deadline: July 27, 2026 at 23:59 UTC (July 28 at 07:59 Asia/Shanghai). The form is prefilled in the signed-in browser but deliberately not submitted until Agent `#5018` passes review and goes live, because the event rules make unlisted ASP submissions ineligible.
+
 | Field | Value |
 | --- | --- |
 | X Account Handle | `@iwillwill_` |
@@ -72,4 +75,5 @@ Approved stills:
 ## Remaining gates
 
 1. Marketplace review must approve Agent `#5018`.
-2. The final form must be checked and submitted after marketplace approval; the public X post URL and verified Telegram handle are ready.
+2. HackQuest registration is currently closed for account `iwillwill`; the organizer has been contacted at https://x.com/iwillwill_/status/2078009112521322639 because the dashboard disables submission while the external form remains open.
+3. The prefilled final form must be checked and submitted after marketplace approval; the public X post URL and verified Telegram handle are ready.
