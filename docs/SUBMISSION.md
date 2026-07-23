@@ -74,6 +74,17 @@ Official deadline: July 27, 2026 at 23:59 UTC (July 28 at 07:59 Asia/Shanghai). 
 
 ## Remaining gates
 
-1. Marketplace review must approve Agent `#5018`.
-2. HackQuest registration is currently closed for account `iwillwill`; the organizer has been contacted at https://x.com/iwillwill_/status/2078009112521322639 because the dashboard disables submission while the external form remains open.
-3. The prefilled final form must be checked and submitted after marketplace approval; the public X post URL and verified Telegram handle are ready.
+1. Marketplace review must approve Agent `#5018`. On 2026-07-18, `okx-a2a doctor --fix` reported `ready=true`, two active clients, and zero blocking failures; a real User `#6317` → ASP `#5018` session reached the service-selection handshake in 40.333 seconds with exit code 0 and no provider timeout. No paid service execution was requested, and the 40.333-second latency remains a review-timeout risk. Evidence: `docs/receipts/2026-07-18-a2a-canary.json`.
+2. HackQuest GitHub OAuth is authenticated as `iwillwill`. The live organizer page exposes the external submission flow; no separate HackQuest project card is required by the published four-step rules. An earlier organizer contact about the disabled dashboard remains historical evidence, not the current registration state.
+3. The official Google Form is fully prefilled but intentionally unsubmitted because it explicitly asks for the Agent ID after the ASP is listed.
+4. After approval, verify the public Marketplace listing, submit the prefilled Form before `2026-07-27 23:59 UTC`, and save a success receipt.
+
+## 2026-07-23 review audit
+
+- Runtime is online: `okx-a2a doctor --json` reports 9 pass / 0 warn / 0 fail, the launchd listener is running, there are no pending task requests, and a fresh local Hermes/LifeOps inference completed in 10.248 seconds. However, forensic timing still rates residual timeout risk medium-high: historical substantive reviewer requests had 68.8-second median and 145.6-second maximum end-to-end latency; the completed paid buyer workflow's critical delivery run took 116.443 seconds. The primary cause is same-session serialization (`commandPendingMs`) compounded by variable model latency. The runtime is improved, not proven fixed.
+- A real buyer `#6317` paid workflow did complete on 2026-07-17, including application, acceptance, deliverable, buyer approval, completion, and receipt of 0.02 USDT. This is separate from the 2026-07-18 service-selection canary.
+- A fresh authoritative `service-list` on 2026-07-23 shows that the live service was already compliant: `Life Admin Action Plan`, type `A2A`, fee `0.02`, with a two-line capability/input description. Re-validating those exact live fields returns `pass: true` with zero findings. The earlier three-blocker diagnosis came from validating a stale/incorrect service snapshot and has been withdrawn.
+- The avatar was replaced on 2026-07-23 with the verified 440×440 opaque square PNG (SHA-256 `16bf422a226995080830f299da8dfb2c474b5946c425def3fd1ed37edc3dfcd9`). The CDN round-trip is byte-identical, the old rejection remark is cleared, and Agent `#5018` remains automatically under review.
+- X currently labels `@iwillwill_` as suspended, so both the participation post and prior public support post are inaccessible even while signed in.
+- A direct escalation email was sent to the official HackQuest Linktree email `founders@hackquest.io` on 2026-07-23 00:58 Asia/Shanghai. AgentMail thread: `353f00b5-189e-48c7-995a-126fff574ecd`.
+- The installed `@okxweb3/a2a-node` is already current at 0.1.9, and launchd already uses the supported lean Hermes arguments (`-t terminal`, preload `okx-ai`, `--max-turns 25`, `--no-restore-cwd` on resume). Do not shorten the provider timeout or switch providers as an unbenchmarked pre-review change.

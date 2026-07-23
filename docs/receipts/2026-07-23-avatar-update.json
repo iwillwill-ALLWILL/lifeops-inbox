@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-07-23T12:32:34+08:00",
+  "competition": "OKX.AI Genesis Hackathon",
+  "work_name": "LifeOps Inbox",
+  "agent_id": "5018",
+  "change": "Replace profile avatar with exact 440x440 opaque square PNG",
+  "source_path": "assets/lifeops-avatar.png",
+  "cdn_url": "https://static.okx.com/cdn/web3/wallet/marketplace/headimages/agent/avatar/16f9b305-f498-4daa-b5de-d1150bcdf05b.png",
+  "sha256": "16bf422a226995080830f299da8dfb2c474b5946c425def3fd1ed37edc3dfcd9",
+  "pixel_width": 440,
+  "pixel_height": 440,
+  "has_alpha": false,
+  "cdn_roundtrip_byte_identical": true,
+  "update_tx_hash": "0xed2f66dfbe93b88ae1f1847bd9e124525ff7d7b6c332935c95be76016f4c5bc3",
+  "post_update_state": {
+    "online": true,
+    "listed": false,
+    "approval_label": "Listing under review",
+    "approval_remark": ""
+  },
+  "service_validation": {
+    "service_name": "Life Admin Action Plan",
+    "service_type": "A2A",
+    "fee_usdt": "0.02",
+    "pass": true,
+    "findings": []
+  }
+}
